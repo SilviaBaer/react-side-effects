@@ -87,3 +87,15 @@ const Login = (props) => {
 };
 
 export default Login;
+
+/* 
+what to add as dep to useEffect()
+So long story short: 
+You must add all "things" you use in your effect function 
+if those "things" could change because your component 
+(or some parent component) re-rendered. 
+That's why variables or state defined in 
+component functions, 
+props or 
+functions defined in component functions 
+have to be added as dependencies! */
