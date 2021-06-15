@@ -12,8 +12,8 @@ const Login = (props) => {
   const [formIsValid, setFormIsValid] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => {//debouncing
-      console.log("Checking from validity!");
+    const cleanAndSend = setTimeout(() => {//debouncing
+      console.log("Checking form validity!");
       setFormIsValid(
         enteredEmail.includes("@") && enteredPassword.trim().length > 6
       );
@@ -21,6 +21,7 @@ const Login = (props) => {
 
     return () => {
       console.log("CLEANUP")
+      clearTimeout(cleanAndSend)
     };//CLEANUP function 
   }, [setFormIsValid, enteredPassword, enteredEmail ]);
 
@@ -30,7 +31,9 @@ const Login = (props) => {
   //it will clean up the counter of inputs before the setFormIsValid 
   //(every time!) 
 
-  //the logic function will run only if AT LEAST one of the dep has changed
+//✨ cleanup collects user inputs and send to validation only once, after the 3000 delay
+  
+//the logic function will run only if AT LEAST one of the dep has changed
   //in this case the dependencies are the function itself
   //you can also avoid mentioning setFormIsValid
 
