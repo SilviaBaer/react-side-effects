@@ -15,7 +15,10 @@ const Login = (props) => {
     setFormIsValid(
       enteredEmail.includes("@") && enteredPassword.trim().length > 6
     );
-  }, [])
+  }, [setFormIsValid, enteredPassword, enteredEmail ]);
+  //the logic function will run only if AT LEAST one of the dep has changed
+  //in this case the dependencies are the function itself
+  //you can also avoid mentioning setFormIsValid
 
   const emailChangeHandler = (event) => {
     setEnteredEmail(event.target.value);
