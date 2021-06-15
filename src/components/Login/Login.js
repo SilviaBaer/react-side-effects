@@ -12,19 +12,23 @@ const Login = (props) => {
   const [formIsValid, setFormIsValid] = useState(false);
 
   useEffect(() => {
-    console.log("EFFECT RUNNING")//FIRST ARGUMENT: it runs AFTER the component first mounts/aka the component is rendered for the first time (With no dep it runs also AFTER any state update eg. user's input)
-  })
+    console.log("EFFECT RUNNING");//1.FIRST ARGUMENT: it runs AFTER the component first mounts/aka the component is rendered for the first time (With no dep it runs also AFTER any state update eg. user's input)
+  return () => {
+    console.log("EFFECT CLEANUP")//3a. CLEANUP FUNCTION runs BEFORE the state function at a whole runs but NOT BEFORE the first time the state function runs for the very first time!!
+  }; //3b. CLEANUP FUNCTION + EMPTY ARRAY: EFFECT RUNNING runs once and EFFECT CLEANUP runs after the component is no longer rendered in the DOM (aka the user has logged in and the form is no longer rendered on screen) 
+  },[enteredPassword])//2a.EMPTY ARRAY: the function is executed ONCE, AFTER the componet is rendered for the very first time
+//2b.ARRAY WITH DEP. the function re-runs every time the component was re-evealuated + the dep state changed
 
   useEffect(() => {
     const cleanAndSend = setTimeout(() => {//debouncing
-      //console.log("Checking form validity!");
+      console.log("Checking form validity!");
       setFormIsValid(
         enteredEmail.includes("@") && enteredPassword.trim().length > 6
       );
     }, 3000);    
 
     return () => {
-      //console.log("CLEANUP")
+      console.log("CLEANUP")
       clearTimeout(cleanAndSend)
     };//CLEANUP function 
   }, [setFormIsValid, enteredPassword, enteredEmail ]);
