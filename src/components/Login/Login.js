@@ -12,15 +12,19 @@ const Login = (props) => {
   const [formIsValid, setFormIsValid] = useState(false);
 
   useEffect(() => {
+    console.log("EFFECT RUNNING")//FIRST ARGUMENT: it runs AFTER the component first mounts/aka the component is rendered for the first time (With no dep it runs also AFTER any state update eg. user's input)
+  })
+
+  useEffect(() => {
     const cleanAndSend = setTimeout(() => {//debouncing
-      console.log("Checking form validity!");
+      //console.log("Checking form validity!");
       setFormIsValid(
         enteredEmail.includes("@") && enteredPassword.trim().length > 6
       );
     }, 3000);    
 
     return () => {
-      console.log("CLEANUP")
+      //console.log("CLEANUP")
       clearTimeout(cleanAndSend)
     };//CLEANUP function 
   }, [setFormIsValid, enteredPassword, enteredEmail ]);
@@ -116,3 +120,4 @@ component functions,
 props or 
 functions defined in component functions 
 have to be added as dependencies! */
+
