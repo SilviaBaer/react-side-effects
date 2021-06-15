@@ -10,7 +10,8 @@ function App() {
   const loginHandler = (email, password) => {
     // We should of course check email and password
     // But it's just a dummy/ demo anyways
-    localStorage.setItem("isLoggedIn, isNotLoggedIn")
+    // eslint-disable-next-line
+    localStorage.setItem("isLoggedIn, 1")
     setIsLoggedIn(true);
   };
 
