@@ -11,7 +11,7 @@ function App() {
     // We should of course check email and password
     // But it's just a dummy/ demo anyways
     // eslint-disable-next-line
-    localStorage.setItem("isLoggedIn, 1")
+    localStorage.setItem("isLoggedIn", "1")
     setIsLoggedIn(true);
   };
 
