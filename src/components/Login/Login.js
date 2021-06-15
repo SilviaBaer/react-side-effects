@@ -12,13 +12,24 @@ const Login = (props) => {
   const [formIsValid, setFormIsValid] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => {
+    setTimeout(() => {//debouncing
       console.log("Checking from validity!");
       setFormIsValid(
         enteredEmail.includes("@") && enteredPassword.trim().length > 6
       );
-    }, 500);    
+    }, 3000);    
+
+    return () => {
+      console.log("CLEANUP")
+    };//CLEANUP function 
   }, [setFormIsValid, enteredPassword, enteredEmail ]);
+
+  //CLEANUP function is in this case an anonymous arrow function 
+  //and does not run before the very first time the component is rendered
+  //it will instead run before every side effect execution
+  //it will clean up the counter of inputs before the setFormIsValid 
+  //(every time!) 
+
   //the logic function will run only if AT LEAST one of the dep has changed
   //in this case the dependencies are the function itself
   //you can also avoid mentioning setFormIsValid
