@@ -12,13 +12,12 @@ const Login = (props) => {
   const [formIsValid, setFormIsValid] = useState(false);
 
   useEffect(() => {
-    console.log("Checking from validity!");
     setTimeout(() => {
-      
-    }, 500); 
-    setFormIsValid(
-      enteredEmail.includes("@") && enteredPassword.trim().length > 6
-    );
+      console.log("Checking from validity!");
+      setFormIsValid(
+        enteredEmail.includes("@") && enteredPassword.trim().length > 6
+      );
+    }, 500);    
   }, [setFormIsValid, enteredPassword, enteredEmail ]);
   //the logic function will run only if AT LEAST one of the dep has changed
   //in this case the dependencies are the function itself
